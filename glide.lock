@@ -72,7 +72,7 @@ imports:
   subpackages:
   - logrus
 - name: github.com/emccode/libstorage
-  version: 2f7210c90252a4e1c9fb011ba29158cb0facb516
+  version: b1a03094c59ccd4f38ba7aa1dae2123dcb5f2ec6
   subpackages:
   - api
   - api/client
