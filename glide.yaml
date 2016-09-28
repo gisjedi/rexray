@@ -49,3 +49,6 @@ import:
 ### ScaleIO
   - package: github.com/emccode/goscaleio
     ref:     support/tls-sio-gw-2.0.0.2
+  - package: github.com/rackspace/gophercloud
+    ref:     42196eaf5b93739d335921404bb7c5f2205fceb3
+    repo:    https://github.com/clintonskitson/gophercloud.git
