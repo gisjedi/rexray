@@ -31,33 +31,17 @@ after_success:
   - make bintray
   - ls -al
 
+before_deploy:
+  - export FILE_CAPTURE=$(ls rexray*)
+
 deploy:
-  - provider: bintray
-    file: bintray-unstable.json
-    user: $BINTRAY_USER
-    key: $BINTRAY_KEY
-    skip_cleanup: true
-    on:
-      all_branches: true
-#      condition: $TRAVIS_TAG =~ ^$ && ($TRAVIS_REPO_SLUG = 'gisjedi/rexray' || $IGNORE_REPO_SLUG_CONDITION = true) && ($TRAVIS_BRANCH = master || $IGNORE_BRANCH_CONDITION = true)
-
-  - provider: bintray
-    file: bintray-staged.json
-    user: $BINTRAY_USER
-    key: $BINTRAY_KEY
-    skip_cleanup: true
-    on:
-      all_branches: true
-#      condition: $TRAVIS_TAG =~ -rc[[:digit:]]+$ && ($TRAVIS_REPO_SLUG = 'gisjedi/rexray' || $IGNORE_REPO_SLUG_CONDITION = true)
-
-  - provider: bintray
-    file: bintray-stable.json
-    user: $BINTRAY_USER
-    key: $BINTRAY_KEY
-    skip_cleanup: true
-    on:
-      all_branches: true
-#      condition: $TRAVIS_TAG =~ ^v?[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]$ && ($TRAVIS_REPO_SLUG = 'gisjedi/rexray' || $IGNORE_REPO_SLUG_CONDITION = true)
+  provider: releases
+  api_key: "$GITHUB_KEY"
+  file: 
+   - "${FILE_CAPTURE}"
+  skip_cleanup: true
+  on:
+    tags: true
 
 cache:
   apt: true
