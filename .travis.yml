@@ -31,14 +31,11 @@ after_success:
   - make bintray
   - ls -al
 
-before_deploy:
-  - export FILE_CAPTURE=$(ls rexray*)
-
 deploy:
   provider: releases
   api_key: "$GITHUB_KEY"
-  file: 
-   - "${FILE_CAPTURE}"
+  file: "rexray*"
+  file_glob: true
   skip_cleanup: true
   on:
     tags: true
